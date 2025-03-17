@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0f415dbf-735c-4b7b-8c3d-b594940d4ab7" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/logs/sys-error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/sys-error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/sys-info.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/sys-info.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/sys-user.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/sys-user.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/controller/UserActivityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/controller/UserActivityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/service/ICmsUserActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/service/ICmsUserActivityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/service/impl/CmsUserActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/src/main/java/com/ruoyi/cms/useractivity/service/impl/CmsUserActivityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/controller/UserActivityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/controller/UserActivityController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/service/ICmsUserActivityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/service/ICmsUserActivityService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/service/impl/CmsUserActivityServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-cms/target/classes/com/ruoyi/cms/useractivity/service/impl/CmsUserActivityServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-ui/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-ui/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ruoyi-ui/src/views/cms/statistics/UserActivityStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/ruoyi-ui/src/views/cms/statistics/UserActivityStats.vue" afterDir="false" />
-    </list>
+    <list default="true" id="0f415dbf-735c-4b7b-8c3d-b594940d4ab7" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +92,7 @@
       <updated>1742216763099</updated>
       <workItem from="1742216764504" duration="955000" />
       <workItem from="1742220932538" duration="205000" />
-      <workItem from="1742243243707" duration="6678000" />
+      <workItem from="1742243243707" duration="7046000" />
     </task>
     <servers />
   </component>

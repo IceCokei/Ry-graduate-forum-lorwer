@@ -62,3 +62,6 @@
 06:09:10.377 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
 06:09:22.080 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
 06:09:57.501 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:27:00.384 [schedule-pool-1] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Logout][退出成功]
+06:27:12.675 [schedule-pool-2] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Error][验证码错误]
+06:27:21.401 [schedule-pool-1] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Success][登录成功]

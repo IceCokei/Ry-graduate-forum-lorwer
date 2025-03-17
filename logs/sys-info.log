@@ -1819,3 +1819,6 @@
 06:12:17.192 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.724 seconds (JVM running for 2.995)
 06:12:18.221 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249536390 started.
 06:12:26.769 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+06:27:00.384 [schedule-pool-1] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Logout][退出成功]
+06:27:12.675 [schedule-pool-2] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Error][验证码错误]
+06:27:21.401 [schedule-pool-1] INFO  sys-user - [run,55] - [127.0.0.1]内网IP[admin][Success][登录成功]
