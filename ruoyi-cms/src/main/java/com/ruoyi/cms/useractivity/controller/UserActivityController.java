@@ -9,9 +9,12 @@ import com.ruoyi.common.utils.ServletUtils;
 import com.ruoyi.common.core.domain.model.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.List;
 
 /**
  * 用户行为跟踪 Controller
@@ -115,15 +118,23 @@ public class UserActivityController extends BaseController {
      */
     @GetMapping("/statistics")
     public AjaxResult getStatistics() {
-        return AjaxResult.success(userActivityService.getUserActivityStatistics());
+        Map<String, Object> statistics = userActivityService.getUserActivityStatistics();
+        System.out.println("==== 返回统计数据详情 ====");
+        System.out.println(JSONObject.toJSONString(statistics));
+        System.out.println("=======================");
+        return AjaxResult.success(statistics);
     }
 
     /**
      * 获取热门浏览内容类型统计
      */
-    @GetMapping("/popular-content")
-    public AjaxResult getPopularContent() {
-        return AjaxResult.success(userActivityService.getPopularContentTypes());
+    @GetMapping("/popular-content-types")
+    public AjaxResult getPopularContentTypes() {
+        List<Map<String, Object>> contentTypes = userActivityService.getPopularContentTypes();
+        System.out.println("==== 返回内容类型统计 ====");
+        System.out.println(JSONObject.toJSONString(contentTypes));
+        System.out.println("=======================");
+        return AjaxResult.success(contentTypes);
     }
 
     /**

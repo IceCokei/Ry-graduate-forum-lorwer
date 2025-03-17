@@ -90,53 +90,57 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
     public Map<String, Object> getUserActivityStatistics() {
         Map<String, Object> statistics = new HashMap<>();
 
-        // 查询真实数据库数据
-        CmsUserActivity query = new CmsUserActivity();
-        List<CmsUserActivity> activityList = cmsUserActivityMapper.selectCmsUserActivityList(query);
+        try {
+            // 查询所有用户活动数据
+            List<CmsUserActivity> activityList = cmsUserActivityMapper.selectCmsUserActivityList(new CmsUserActivity());
+            System.out.println("查询到活动记录数量: " + activityList.size());
 
-        // 统计页面访问数据
-        Map<String, Integer> pageViewsMap = new HashMap<>();
-        for (CmsUserActivity activity : activityList) {
-            String path = activity.getPath();
-            pageViewsMap.put(path, pageViewsMap.getOrDefault(path, 0) + 1);
-        }
-
-        // 转换为前端需要的格式
-        List<Map<String, Object>> pageViews = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : pageViewsMap.entrySet()) {
-            Map<String, Object> item = new HashMap<>();
-            item.put("page", entry.getKey());
-            item.put("count", entry.getValue());
-            pageViews.add(item);
-        }
-
-        // 按访问量排序
-        pageViews.sort((a, b) -> {
-            Integer countA = (Integer) a.get("count");
-            Integer countB = (Integer) b.get("count");
-            return countB.compareTo(countA);
-        });
-
-        // 限制返回前10条记录
-        if (pageViews.size() > 10) {
-            pageViews = pageViews.subList(0, 10);
-        }
-
-        statistics.put("pageViews", pageViews);
-
-        // 统计总访问量、总用户数等其他数据
-        statistics.put("totalVisits", activityList.size());
-
-        // 统计独立用户数
-        Set<Long> uniqueUsers = new HashSet<>();
-        for (CmsUserActivity activity : activityList) {
-            if (activity.getUserId() != null) {
-                uniqueUsers.add(activity.getUserId());
+            if (activityList.isEmpty()) {
+                statistics.put("pageViews", new ArrayList<>());
+                System.out.println("活动记录为空，返回空数据");
+                return statistics;
             }
-        }
-        statistics.put("uniqueUsers", uniqueUsers.size());
 
-        return statistics;
+            // 计算页面访问量统计
+            Map<String, Integer> pageVisits = new HashMap<>();
+            for (CmsUserActivity activity : activityList) {
+                String path = activity.getPath();
+                if (path != null) {
+                    pageVisits.put(path, pageVisits.getOrDefault(path, 0) + 1);
+                }
+            }
+
+            // 转换为前端需要的格式
+            List<Map<String, Object>> pageViewsData = new ArrayList<>();
+            for (Map.Entry<String, Integer> entry : pageVisits.entrySet()) {
+                Map<String, Object> item = new HashMap<>();
+                item.put("page", entry.getKey());
+                item.put("visits", entry.getValue());
+                pageViewsData.add(item);
+            }
+
+            // 按访问量排序
+            pageViewsData.sort((a, b) -> {
+                Integer visitsA = (Integer) a.get("visits");
+                Integer visitsB = (Integer) b.get("visits");
+                return visitsB.compareTo(visitsA);
+            });
+
+            // 限制返回记录数
+            if (pageViewsData.size() > 5) {
+                pageViewsData = pageViewsData.subList(0, 5);
+            }
+
+            System.out.println("处理后的页面访问数据: " + pageViewsData);
+            statistics.put("pageViews", pageViewsData);
+            return statistics;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("统计异常: " + e.getMessage());
+            // 返回空数据
+            statistics.put("pageViews", new ArrayList<>());
+            return statistics;
+        }
     }
 
     /**
@@ -146,41 +150,40 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
      */
     @Override
     public List<Map<String, Object>> getPopularContentTypes() {
-        // 查询真实数据库数据
-        CmsUserActivity query = new CmsUserActivity();
-        List<CmsUserActivity> activityList = cmsUserActivityMapper.selectCmsUserActivityList(query);
+        try {
+            // 查询所有用户活动数据
+            List<CmsUserActivity> activityList = cmsUserActivityMapper.selectCmsUserActivityList(new CmsUserActivity());
 
-        // 统计内容类型
-        Map<String, Integer> contentTypeMap = new HashMap<>();
-        for (CmsUserActivity activity : activityList) {
-            if (activity.getContentType() != null && !activity.getContentType().isEmpty()) {
-                contentTypeMap.put(activity.getContentType(),
-                        contentTypeMap.getOrDefault(activity.getContentType(), 0) + 1);
+            // 统计内容类型
+            Map<String, Integer> contentTypeCounts = new HashMap<>();
+            for (CmsUserActivity activity : activityList) {
+                String contentType = activity.getContentType();
+                if (contentType != null) {
+                    contentTypeCounts.put(contentType, contentTypeCounts.getOrDefault(contentType, 0) + 1);
+                }
             }
+
+            // 转换为前端需要的格式
+            List<Map<String, Object>> contentTypes = new ArrayList<>();
+            for (Map.Entry<String, Integer> entry : contentTypeCounts.entrySet()) {
+                Map<String, Object> item = new HashMap<>();
+                item.put("type", entry.getKey());
+                item.put("count", entry.getValue());
+                contentTypes.add(item);
+            }
+
+            // 按数量排序
+            contentTypes.sort((a, b) -> {
+                Integer countA = (Integer) a.get("count");
+                Integer countB = (Integer) b.get("count");
+                return countB.compareTo(countA);
+            });
+
+            return contentTypes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-
-        // 转换为前端需要的格式
-        List<Map<String, Object>> contentTypes = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : contentTypeMap.entrySet()) {
-            Map<String, Object> item = new HashMap<>();
-            item.put("type", entry.getKey());
-            item.put("count", entry.getValue());
-            contentTypes.add(item);
-        }
-
-        // 按访问量排序
-        contentTypes.sort((a, b) -> {
-            Integer countA = (Integer) a.get("count");
-            Integer countB = (Integer) b.get("count");
-            return countB.compareTo(countA);
-        });
-
-        // 限制返回记录数
-        if (contentTypes.size() > 5) {
-            contentTypes = contentTypes.subList(0, 5);
-        }
-
-        return contentTypes;
     }
 
     /**

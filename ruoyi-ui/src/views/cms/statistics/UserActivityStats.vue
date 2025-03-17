@@ -47,6 +47,7 @@
 
 <script>
 import * as echarts from 'echarts'
+import request from '@/utils/request'
 
 export default {
     name: "UserActivityStats",
@@ -79,28 +80,65 @@ export default {
             this.loading = true
 
             // 获取页面访问统计
-            this.$http.get('/cms/userActivity/statistics').then(response => {
-                const data = response.data
-                // 初始化页面访问统计图表
-                this.initPageViewsChart(data.pageViews || [])
-                this.loading = false
-            })
+            this.fetchPageViewsData()
 
             // 获取内容类型统计
-            this.$http.get('/cms/userActivity/popular-content').then(response => {
-                // 初始化内容类型图表
-                this.initContentTypeChart(response.data || [])
-            })
+            this.fetchContentTypeData()
 
             // 获取关键词统计
-            this.$http.get('/cms/userActivity/popular-keywords').then(response => {
+            request.get('/cms/userActivity/popular-keywords').then(response => {
+                console.log('关键词数据:', response.data)
                 this.keywordsData = response.data || []
+            }).catch(error => {
+                console.error('获取关键词统计失败', error)
             })
 
             // 获取停留时间统计
-            this.$http.get('/cms/userActivity/average-time').then(response => {
-                // 初始化停留时间图表
-                this.initTimeSpentChart(response.data || [])
+            request.get('/cms/userActivity/average-time').then(response => {
+                console.log('停留时间数据:', response.data)
+                this.timeSpentData = response.data || []
+                this.updateTimeSpentChart()
+            }).catch(error => {
+                console.error('获取停留时间统计失败', error)
+            })
+        },
+        fetchPageViewsData() {
+            request.get('/cms/userActivity/statistics').then(response => {
+                console.log('获取到的页面访问数据:', response.data)
+                if (response.code === 200) {
+                    const data = response.data
+                    if (data && data.pageViews && data.pageViews.length > 0) {
+                        this.pageViewsData = data.pageViews
+                        this.updatePageViewsChart()
+                    } else {
+                        console.warn('页面访问数据为空')
+                        this.$message.warning('没有页面访问数据')
+                    }
+                } else {
+                    console.error('请求页面访问数据失败:', response.msg)
+                }
+                this.loading = false
+            }).catch(error => {
+                console.error('获取页面访问统计失败', error)
+                this.loading = false
+            })
+        },
+        fetchContentTypeData() {
+            request.get('/cms/userActivity/popular-content-types').then(response => {
+                console.log('获取到的内容类型数据:', response.data)
+                if (response.code === 200) {
+                    const data = response.data
+                    if (data && data.length > 0) {
+                        this.contentTypeData = data
+                        this.updateContentTypeChart()
+                    } else {
+                        console.warn('内容类型数据为空')
+                    }
+                } else {
+                    console.error('请求内容类型统计失败:', response.msg)
+                }
+            }).catch(error => {
+                console.error('获取内容类型统计失败', error)
             })
         },
         initCharts() {
@@ -126,24 +164,28 @@ export default {
             })
         },
         updatePageViewsChart() {
-            if (!this.pageViewsChart) return
+            if (!this.pageViewsChart || !this.pageViewsData) return
 
             const option = {
                 title: {
-                    text: '页面访问统计'
+                    text: '页面访问统计',
+                    left: 'center'
                 },
                 tooltip: {
-                    trigger: 'axis'
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
                 },
                 xAxis: {
                     type: 'category',
-                    data: this.pageViewsData.map(item => item.page)
+                    data: this.pageViewsData.map(item => item.page || '')
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                    data: this.pageViewsData.map(item => item.count),
+                    data: this.pageViewsData.map(item => item.visits || 0),
                     type: 'bar'
                 }]
             }
@@ -179,7 +221,7 @@ export default {
             this.timeSpentChart.setOption(option)
         },
         updateContentTypeChart() {
-            if (!this.contentTypeChart) return
+            if (!this.contentTypeChart || !this.contentTypeData) return
 
             const option = {
                 title: {
@@ -193,7 +235,7 @@ export default {
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: this.contentTypeData.map(item => item.type)
+                    data: this.contentTypeData.map(item => item.type || '')
                 },
                 series: [
                     {
@@ -202,8 +244,8 @@ export default {
                         radius: '55%',
                         center: ['50%', '60%'],
                         data: this.contentTypeData.map(item => ({
-                            name: item.type,
-                            value: item.count
+                            name: item.type || '',
+                            value: item.count || 0
                         })),
                         emphasis: {
                             itemStyle: {
@@ -224,15 +266,21 @@ export default {
             if (this.contentTypeChart) this.contentTypeChart.resize()
         },
         initPageViewsChart(data) {
-            this.pageViewsData = data
+            if (data) {
+                this.pageViewsData = data
+            }
             this.updatePageViewsChart()
         },
         initTimeSpentChart(data) {
-            this.timeSpentData = data
+            if (data) {
+                this.timeSpentData = data
+            }
             this.updateTimeSpentChart()
         },
         initContentTypeChart(data) {
-            this.contentTypeData = data
+            if (data) {
+                this.contentTypeData = data
+            }
             this.updateContentTypeChart()
         }
     }
