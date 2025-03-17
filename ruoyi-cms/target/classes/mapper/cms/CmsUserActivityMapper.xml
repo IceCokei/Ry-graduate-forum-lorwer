@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.cms.useractivity.mapper.CmsUserActivityMapper">
+    
+    <resultMap type="CmsUserActivity" id="CmsUserActivityResult">
+        <result property="activityId"    column="activity_id"    />
+        <result property="userId"        column="user_id"        />
+        <result property="username"      column="username"       />
+        <result property="path"          column="path"           />
+        <result property="timeSpent"     column="time_spent"     />
+        <result property="contentType"   column="content_type"   />
+        <result property="device"        column="device"         />
+        <result property="browser"       column="browser"        />
+        <result property="ipAddress"     column="ip_address"     />
+        <result property="timestamp"     column="timestamp"      />
+        <result property="createBy"      column="create_by"      />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"      column="update_by"      />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"        column="remark"         />
+    </resultMap>
+
+    <!-- 由于pageViews和searchKeywords是复杂对象，实际项目中可能需要单独的表或JSON存储 -->
+    
+    <sql id="selectCmsUserActivityVo">
+        select activity_id, user_id, username, path, time_spent, content_type, device, browser, ip_address, timestamp, create_by, create_time, update_by, update_time, remark
+        from cms_user_activity
+    </sql>
+
+    <select id="selectCmsUserActivityList" parameterType="CmsUserActivity" resultMap="CmsUserActivityResult">
+        <include refid="selectCmsUserActivityVo"/>
+        <where>  
+            <if test="activityId != null "> and activity_id = #{activityId}</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="path != null  and path != ''"> and path = #{path}</if>
+            <if test="contentType != null  and contentType != ''"> and content_type = #{contentType}</if>
+            <if test="params.beginTimestamp != null and params.beginTimestamp != ''"><!-- 开始时间检索 -->
+                AND date_format(timestamp,'%y%m%d') &gt;= date_format(#{params.beginTimestamp},'%y%m%d')
+            </if>
+            <if test="params.endTimestamp != null and params.endTimestamp != ''"><!-- 结束时间检索 -->
+                AND date_format(timestamp,'%y%m%d') &lt;= date_format(#{params.endTimestamp},'%y%m%d')
+            </if>
+        </where>
+    </select>
+    
+    <select id="selectCmsUserActivityById" parameterType="Long" resultMap="CmsUserActivityResult">
+        <include refid="selectCmsUserActivityVo"/>
+        where activity_id = #{activityId}
+    </select>
+        
+    <insert id="insertCmsUserActivity" parameterType="CmsUserActivity">
+        insert into cms_user_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="username != null">username,</if>
+            <if test="path != null">path,</if>
+            <if test="timeSpent != null">time_spent,</if>
+            <if test="contentType != null">content_type,</if>
+            <if test="device != null">device,</if>
+            <if test="browser != null">browser,</if>
+            <if test="ipAddress != null">ip_address,</if>
+            <if test="timestamp != null">timestamp,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="username != null">#{username},</if>
+            <if test="path != null">#{path},</if>
+            <if test="timeSpent != null">#{timeSpent},</if>
+            <if test="contentType != null">#{contentType},</if>
+            <if test="device != null">#{device},</if>
+            <if test="browser != null">#{browser},</if>
+            <if test="ipAddress != null">#{ipAddress},</if>
+            <if test="timestamp != null">#{timestamp},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCmsUserActivity" parameterType="CmsUserActivity">
+        update cms_user_activity
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="path != null">path = #{path},</if>
+            <if test="timeSpent != null">time_spent = #{timeSpent},</if>
+            <if test="contentType != null">content_type = #{contentType},</if>
+            <if test="device != null">device = #{device},</if>
+            <if test="browser != null">browser = #{browser},</if>
+            <if test="ipAddress != null">ip_address = #{ipAddress},</if>
+            <if test="timestamp != null">timestamp = #{timestamp},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where activity_id = #{activityId}
+    </update>
+
+    <delete id="deleteCmsUserActivityById" parameterType="Long">
+        delete from cms_user_activity where activity_id = #{activityId}
+    </delete>
+
+    <delete id="deleteCmsUserActivityByIds" parameterType="String">
+        delete from cms_user_activity where activity_id in 
+        <foreach item="activityId" collection="array" open="(" separator="," close=")">
+            #{activityId}
+        </foreach>
+    </delete>
+</mapper> 

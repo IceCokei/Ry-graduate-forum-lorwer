@@ -13,6 +13,8 @@ import router from './router'
 import directive from './directive' // directive
 import plugins from './plugins' // plugins
 import { download } from '@/utils/request'
+// 导入request
+import request from '@/utils/request'
 
 import './assets/icons' // icon
 import './permission' // permission control
@@ -76,6 +78,79 @@ Vue.use(Element, {
 })
 
 Vue.config.productionTip = false
+
+// 添加全局导航守卫，记录用户行为
+router.afterEach((to, from) => {
+  // 排除一些不需要记录的页面，如登录、错误页面等
+  const excludePaths = ['/login', '/auth-redirect', '/404', '/401'];
+  if (!excludePaths.includes(to.path)) {
+    // 创建记录用户行为的函数
+    const recordUserActivity = () => {
+      // 获取停留时间
+      const now = new Date().getTime();
+      const timeSpent = from.name ? Math.floor((now - router.app.$options.visitStartTime) / 1000) : 0;
+
+      // 获取内容类型
+      let contentType = '其他';
+      if (to.path.includes('/cms/post')) {
+        contentType = '文章';
+      } else if (to.path.includes('/cms/tag')) {
+        contentType = '标签';
+      } else if (to.path.includes('/cms/index')) {
+        contentType = '首页';
+      }
+
+      // 构建数据
+      const activityData = {
+        path: to.path,
+        timeSpent: timeSpent > 0 ? timeSpent : 0,
+        contentType: contentType,
+        device: navigator.userAgent,
+        browser: getBrowserInfo(),
+        timestamp: new Date()
+      };
+
+      // 发送请求
+      request({
+        url: '/cms/userActivity/track',
+        method: 'post',
+        data: activityData
+      }).then(() => {
+        console.log('用户行为数据已记录');
+      }).catch(error => {
+        console.error('记录用户行为失败', error);
+      });
+    };
+
+    // 记录当前时间作为新页面访问的开始时间
+    router.app.$options.visitStartTime = new Date().getTime();
+
+    // 如果不是首次访问，记录上一页面的访问情况
+    if (from.name) {
+      recordUserActivity();
+    }
+  }
+});
+
+// 辅助函数：获取浏览器信息
+function getBrowserInfo() {
+  const ua = navigator.userAgent;
+  let browser = 'Unknown';
+
+  if (ua.indexOf('Edge') > -1) {
+    browser = 'Edge';
+  } else if (ua.indexOf('Chrome') > -1) {
+    browser = 'Chrome';
+  } else if (ua.indexOf('Firefox') > -1) {
+    browser = 'Firefox';
+  } else if (ua.indexOf('Safari') > -1) {
+    browser = 'Safari';
+  } else if (ua.indexOf('MSIE') > -1 || ua.indexOf('Trident') > -1) {
+    browser = 'IE';
+  }
+
+  return browser;
+}
 
 new Vue({
   el: '#app',

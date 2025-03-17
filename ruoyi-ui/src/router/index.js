@@ -223,6 +223,19 @@ export const constantRoutes = [{
         activeMenu: '/tool/gen'
       }
     }]
+  },
+  {
+    path: '/cms/statistics',
+    component: Layout,
+    hidden: false,
+    children: [
+      {
+        path: 'useractivity',
+        component: (resolve) => require(['@/views/cms/statistics/UserActivityStats'], resolve),
+        name: 'UserActivityStats',
+        meta: { title: '用户行为统计', icon: 'chart' }
+      }
+    ]
   }
 ]
 
