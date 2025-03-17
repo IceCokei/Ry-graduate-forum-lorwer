@@ -1323,3 +1323,499 @@
 05:17:02.849 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.961 seconds (JVM running for 3.223)
 05:17:03.873 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742246222002 started.
 05:17:17.307 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+05:56:31.098 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742246222002 paused.
+05:56:31.128 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742246222002 shutting down.
+05:56:31.128 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742246222002 paused.
+05:56:31.128 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742246222002 shutdown complete.
+05:56:31.128 [Thread-4] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+05:56:31.132 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-1} closing ...
+05:56:31.134 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-1} closed
+05:56:31.357 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 4132 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+05:56:31.357 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+05:56:31.590 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+05:56:31.590 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+05:56:31.591 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+05:56:31.596 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+05:56:31.933 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-2} inited
+05:56:32.075 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+05:56:32.076 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+05:56:32.076 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+05:56:32.076 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248592075'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+05:56:32.076 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+05:56:32.076 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+05:56:32.076 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@665ac48d
+05:56:32.540 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+05:56:32.567 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.23 seconds (JVM running for 2372.948)
+05:56:33.575 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248592075 started.
+05:56:33.950 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248592075 paused.
+05:56:33.958 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248592075 shutting down.
+05:56:33.958 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248592075 paused.
+05:56:33.958 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248592075 shutdown complete.
+05:56:33.958 [Thread-10] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+05:56:33.960 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-2} closing ...
+05:56:33.960 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-2} closed
+05:56:34.120 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 4132 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+05:56:34.121 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+05:56:34.360 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+05:56:34.360 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+05:56:34.360 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+05:56:34.364 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+05:56:34.695 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-3} inited
+05:56:34.833 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+05:56:34.834 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+05:56:34.834 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+05:56:34.834 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248594833'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+05:56:34.834 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+05:56:34.834 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+05:56:34.834 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@15590bde
+05:56:35.310 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+05:56:35.333 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.23 seconds (JVM running for 2375.714)
+05:56:36.346 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248594833 started.
+05:56:57.430 [Thread-17] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248594833 paused.
+05:56:57.445 [Thread-17] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248594833 shutting down.
+05:56:57.445 [Thread-17] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248594833 paused.
+05:56:57.445 [Thread-17] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248594833 shutdown complete.
+05:56:57.446 [Thread-17] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+05:56:57.448 [Thread-17] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-3} closing ...
+05:56:57.449 [Thread-17] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-3} closed
+05:56:57.658 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 4132 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+05:56:57.658 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+05:56:57.873 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+05:56:57.873 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+05:56:57.873 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+05:56:57.877 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+05:56:58.194 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-4} inited
+05:56:58.347 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+05:56:58.348 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+05:56:58.348 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+05:56:58.348 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248618347'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+05:56:58.348 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+05:56:58.348 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+05:56:58.348 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@3d96222c
+05:56:58.803 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+05:56:58.824 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.18 seconds (JVM running for 2399.204)
+05:56:59.844 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248618347 started.
+05:57:08.539 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248618347 paused.
+05:57:08.547 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248618347 shutting down.
+05:57:08.547 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248618347 paused.
+05:57:08.547 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248618347 shutdown complete.
+05:57:08.547 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+05:57:08.548 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-4} closing ...
+05:57:08.549 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-4} closed
+05:58:13.161 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 45650 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+05:58:13.161 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.0.Final
+05:58:13.162 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+05:58:13.895 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+05:58:13.895 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+05:58:13.895 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+05:58:13.918 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+05:58:14.628 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-1} inited
+05:58:15.072 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+05:58:15.076 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+05:58:15.077 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+05:58:15.079 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248695073'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+05:58:15.079 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+05:58:15.079 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+05:58:15.079 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@1c415d34
+05:58:15.842 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+05:58:15.932 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.909 seconds (JVM running for 3.175)
+05:58:16.950 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248695073 started.
+05:58:29.862 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+06:01:43.545 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248695073 paused.
+06:01:43.571 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248695073 shutting down.
+06:01:43.572 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248695073 paused.
+06:01:43.572 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248695073 shutdown complete.
+06:01:43.572 [Thread-4] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:01:43.575 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-1} closing ...
+06:01:43.576 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-1} closed
+06:01:43.747 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 45650 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:01:43.747 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:01:44.005 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:01:44.005 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:01:44.005 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:01:44.009 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:01:44.331 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-2} inited
+06:01:44.471 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:01:44.471 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:01:44.471 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:01:44.471 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248904471'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:01:44.471 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:01:44.471 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:01:44.471 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@5d3006b
+06:01:44.959 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:01:44.985 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.257 seconds (JVM running for 212.228)
+06:01:45.999 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248904471 started.
+06:01:46.389 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248904471 paused.
+06:01:46.407 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248904471 shutting down.
+06:01:46.407 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248904471 paused.
+06:01:46.408 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248904471 shutdown complete.
+06:01:46.408 [Thread-10] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:01:46.411 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-2} closing ...
+06:01:46.413 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-2} closed
+06:01:46.632 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 45650 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:01:46.632 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:01:46.854 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:01:46.854 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:01:46.854 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:01:46.858 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:01:47.206 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-3} inited
+06:01:47.364 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:01:47.365 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:01:47.365 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:01:47.365 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248907364'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:01:47.365 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:01:47.365 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:01:47.365 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@3415de5
+06:01:47.846 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:01:47.870 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.254 seconds (JVM running for 215.114)
+06:01:48.881 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248907364 started.
+06:01:50.335 [Thread-17] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248907364 paused.
+06:01:50.360 [Thread-17] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248907364 shutting down.
+06:01:50.361 [Thread-17] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248907364 paused.
+06:01:50.361 [Thread-17] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248907364 shutdown complete.
+06:01:50.362 [Thread-17] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:01:50.365 [Thread-17] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-3} closing ...
+06:01:50.368 [Thread-17] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-3} closed
+06:01:50.548 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 45650 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:01:50.548 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:01:50.759 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:01:50.759 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:01:50.759 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:01:50.763 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:01:51.088 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-4} inited
+06:01:51.222 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:01:51.222 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:01:51.222 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:01:51.223 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248911222'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:01:51.223 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:01:51.223 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:01:51.223 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@76743e9f
+06:01:51.661 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:01:51.687 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.153 seconds (JVM running for 218.93)
+06:01:52.701 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248911222 started.
+06:02:14.777 [Thread-24] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248911222 paused.
+06:02:14.793 [Thread-24] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248911222 shutting down.
+06:02:14.794 [Thread-24] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248911222 paused.
+06:02:14.794 [Thread-24] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248911222 shutdown complete.
+06:02:14.794 [Thread-24] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:02:14.797 [Thread-24] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-4} closing ...
+06:02:14.799 [Thread-24] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-4} closed
+06:02:14.981 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 45650 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:02:14.981 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:02:15.226 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:02:15.226 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:02:15.226 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:02:15.230 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:02:15.538 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-5} inited
+06:02:15.668 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:02:15.668 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:02:15.668 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:02:15.668 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248935668'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:02:15.668 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:02:15.669 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:02:15.669 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@1e3fa164
+06:02:16.094 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:02:16.116 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.151 seconds (JVM running for 243.359)
+06:02:17.124 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248935668 started.
+06:02:19.324 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248935668 paused.
+06:02:19.331 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248935668 shutting down.
+06:02:19.331 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248935668 paused.
+06:02:19.331 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248935668 shutdown complete.
+06:02:19.331 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:02:19.332 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-5} closing ...
+06:02:19.333 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-5} closed
+06:02:21.023 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 49852 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:02:21.022 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.0.Final
+06:02:21.024 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:02:21.734 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:02:21.734 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:02:21.734 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:02:21.756 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:02:22.443 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-1} inited
+06:02:22.860 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:02:22.864 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:02:22.865 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:02:22.866 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742248942861'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:02:22.867 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:02:22.867 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:02:22.867 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@4e68b34c
+06:02:23.610 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:02:23.684 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.801 seconds (JVM running for 3.061)
+06:02:24.704 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248942861 started.
+06:02:27.281 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+06:06:49.111 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248942861 paused.
+06:06:49.136 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248942861 shutting down.
+06:06:49.136 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248942861 paused.
+06:06:49.137 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742248942861 shutdown complete.
+06:06:49.137 [Thread-4] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:06:49.141 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-1} closing ...
+06:06:49.143 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-1} closed
+06:06:49.341 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 49852 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:06:49.341 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:06:49.594 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:06:49.594 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:06:49.595 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:06:49.600 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:06:49.945 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-2} inited
+06:06:50.110 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:06:50.111 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:06:50.111 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:06:50.111 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249210110'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:06:50.111 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:06:50.112 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:06:50.112 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@2f566f3b
+06:06:50.589 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:06:50.619 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.301 seconds (JVM running for 269.996)
+06:06:51.627 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249210110 started.
+06:06:59.933 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+06:07:11.046 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249210110 paused.
+06:07:11.054 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249210110 shutting down.
+06:07:11.054 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249210110 paused.
+06:07:11.054 [SpringApplicationShutdownHook] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249210110 shutdown complete.
+06:07:11.054 [SpringApplicationShutdownHook] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:07:11.055 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-2} closing ...
+06:07:11.056 [SpringApplicationShutdownHook] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-2} closed
+06:07:12.534 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 54869 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:07:12.534 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.0.Final
+06:07:12.535 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:07:13.260 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:07:13.260 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:07:13.260 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:07:13.283 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:07:13.972 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-1} inited
+06:07:14.384 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:07:14.396 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:07:14.396 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:07:14.398 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249234392'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:07:14.398 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:07:14.398 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:07:14.398 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@2bfbcb4a
+06:07:15.128 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:07:15.208 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.809 seconds (JVM running for 3.069)
+06:07:16.215 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249234392 started.
+06:07:22.735 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249234392 paused.
+06:07:22.752 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249234392 shutting down.
+06:07:22.752 [Thread-4] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249234392 paused.
+06:07:22.752 [Thread-4] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249234392 shutdown complete.
+06:07:22.752 [Thread-4] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:07:22.754 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-1} closing ...
+06:07:22.756 [Thread-4] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-1} closed
+06:07:22.951 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 54869 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:07:22.951 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:07:23.178 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:07:23.179 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:07:23.179 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:07:23.183 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:07:23.519 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-2} inited
+06:07:23.696 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:07:23.697 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:07:23.697 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:07:23.697 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249243696'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:07:23.697 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:07:23.697 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:07:23.697 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@7ff1ea48
+06:07:24.204 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:07:24.232 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 1.299 seconds (JVM running for 12.092)
+06:07:25.244 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249243696 started.
+06:07:32.207 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+06:09:09.402 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249243696 paused.
+06:09:09.421 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249243696 shutting down.
+06:09:09.421 [Thread-10] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249243696 paused.
+06:09:09.421 [Thread-10] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249243696 shutdown complete.
+06:09:09.421 [Thread-10] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:09:09.424 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-2} closing ...
+06:09:09.425 [Thread-10] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-2} closed
+06:09:09.608 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 54869 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:09:09.608 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:09:09.832 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:09:09.832 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:09:09.832 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:09:09.836 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:09:10.145 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-3} inited
+06:09:10.285 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:09:10.286 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:09:10.286 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:09:10.286 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249350285'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:09:10.286 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:09:10.286 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:09:10.286 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@331b20e5
+06:09:10.376 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249350285 shutting down.
+06:09:10.377 [restartedMain] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249350285 paused.
+06:09:10.377 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249350285 shutdown complete.
+06:09:10.377 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:09:10.377 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-3} closing ...
+06:09:10.378 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-3} closed
+06:09:10.484 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+06:09:21.293 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 54869 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:09:21.293 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:09:21.517 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:09:21.517 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:09:21.517 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:09:21.521 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:09:21.849 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-4} inited
+06:09:21.991 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:09:21.991 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:09:21.991 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:09:21.992 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249361991'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:09:21.992 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:09:21.992 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:09:21.992 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@4c92dd71
+06:09:22.080 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249361991 shutting down.
+06:09:22.080 [restartedMain] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249361991 paused.
+06:09:22.080 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249361991 shutdown complete.
+06:09:22.080 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:09:22.081 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-4} closing ...
+06:09:22.081 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-4} closed
+06:09:22.188 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+06:09:56.680 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 54869 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:09:56.681 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:09:56.927 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:09:56.927 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:09:56.927 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:09:56.932 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:09:57.245 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-5} inited
+06:09:57.407 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:09:57.408 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:09:57.408 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:09:57.408 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249397407'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:09:57.408 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:09:57.408 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:09:57.408 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@24b95c06
+06:09:57.501 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,666] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249397407 shutting down.
+06:09:57.501 [restartedMain] INFO  o.q.c.QuartzScheduler - [standby,585] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249397407 paused.
+06:09:57.501 [restartedMain] INFO  o.q.c.QuartzScheduler - [shutdown,740] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249397407 shutdown complete.
+06:09:57.501 [restartedMain] INFO  sys-user - [shutdownAsyncManager,31] - ====关闭后台任务任务线程池====
+06:09:57.502 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2071] - {dataSource-5} closing ...
+06:09:57.502 [restartedMain] INFO  c.a.d.p.DruidDataSource - [close,2144] - {dataSource-5} closed
+06:09:57.608 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Stopping service [Tomcat]
+06:12:14.597 [background-preinit] INFO  o.h.v.i.util.Version - [<clinit>,21] - HV000001: Hibernate Validator 6.2.0.Final
+06:12:14.597 [restartedMain] INFO  c.r.RuoYiApplication - [logStarting,55] - Starting RuoYiApplication using Java 17.0.12 on Coke-MacBook-Pro.local with PID 60191 (/Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer/ruoyi-admin/target/classes started by coke in /Users/coke/Test/ruoyi/xinhoutai/Ry-graduate-forum-lorwer)
+06:12:14.598 [restartedMain] INFO  c.r.RuoYiApplication - [logStartupProfileInfo,663] - The following profiles are active: druid
+06:12:15.302 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Initializing ProtocolHandler ["http-nio-8088"]
+06:12:15.303 [restartedMain] INFO  o.a.c.c.StandardService - [log,173] - Starting service [Tomcat]
+06:12:15.303 [restartedMain] INFO  o.a.c.c.StandardEngine - [log,173] - Starting Servlet engine: [Apache Tomcat/9.0.54]
+06:12:15.324 [restartedMain] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring embedded WebApplicationContext
+06:12:15.985 [restartedMain] INFO  c.a.d.p.DruidDataSource - [init,998] - {dataSource-1} inited
+06:12:16.389 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1220] - Using default implementation for ThreadExecutor
+06:12:16.393 [restartedMain] INFO  o.q.c.SchedulerSignalerImpl - [<init>,61] - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+06:12:16.393 [restartedMain] INFO  o.q.c.QuartzScheduler - [<init>,229] - Quartz Scheduler v.2.3.2 created.
+06:12:16.395 [restartedMain] INFO  o.q.c.QuartzScheduler - [initialize,294] - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'RuoyiScheduler' with instanceId 'Coke-MacBook-Pro.local1742249536390'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+06:12:16.395 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1374] - Quartz scheduler 'RuoyiScheduler' initialized from an externally provided properties instance.
+06:12:16.395 [restartedMain] INFO  o.q.i.StdSchedulerFactory - [instantiate,1378] - Quartz scheduler version: 2.3.2
+06:12:16.396 [restartedMain] INFO  o.q.c.QuartzScheduler - [setJobFactory,2293] - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@75c404b8
+06:12:17.116 [restartedMain] INFO  o.a.c.h.Http11NioProtocol - [log,173] - Starting ProtocolHandler ["http-nio-8088"]
+06:12:17.192 [restartedMain] INFO  c.r.RuoYiApplication - [logStarted,61] - Started RuoYiApplication in 2.724 seconds (JVM running for 2.995)
+06:12:18.221 [Quartz Scheduler [RuoyiScheduler]] INFO  o.q.c.QuartzScheduler - [start,547] - Scheduler RuoyiScheduler_$_Coke-MacBook-Pro.local1742249536390 started.
+06:12:26.769 [http-nio-8088-exec-1] INFO  o.a.c.c.C.[.[.[/] - [log,173] - Initializing Spring DispatcherServlet 'dispatcherServlet'

@@ -118,11 +118,8 @@ public class UserActivityController extends BaseController {
      */
     @GetMapping("/statistics")
     public AjaxResult getStatistics() {
-        Map<String, Object> statistics = userActivityService.getUserActivityStatistics();
-        System.out.println("==== 返回统计数据详情 ====");
-        System.out.println(JSONObject.toJSONString(statistics));
-        System.out.println("=======================");
-        return AjaxResult.success(statistics);
+        Map<String, Object> data = userActivityService.getUserActivityStatistics();
+        return AjaxResult.success(data);
     }
 
     /**
@@ -141,7 +138,7 @@ public class UserActivityController extends BaseController {
      * 获取热门搜索关键词
      */
     @GetMapping("/popular-keywords")
-    public AjaxResult getPopularKeywords() {
+    public AjaxResult getPopularSearchKeywords() {
         return AjaxResult.success(userActivityService.getPopularSearchKeywords());
     }
 
@@ -181,5 +178,32 @@ public class UserActivityController extends BaseController {
             e.printStackTrace();
             return AjaxResult.error("测试插入失败: " + e.getMessage());
         }
+    }
+
+    /**
+     * 获取内容类型统计
+     */
+    @GetMapping("/contentTypes")
+    public AjaxResult getContentTypeStatistics() {
+        List<Map<String, Object>> data = userActivityService.getContentTypeStatistics();
+        return AjaxResult.success(data);
+    }
+
+    /**
+     * 获取关键词统计
+     */
+    @GetMapping("/keywords")
+    public AjaxResult getKeywordsStatistics() {
+        List<Map<String, Object>> data = userActivityService.getPopularSearchKeywords();
+        return AjaxResult.success(data);
+    }
+
+    /**
+     * 获取用户停留时间统计
+     */
+    @GetMapping("/timeSpent")
+    public AjaxResult getTimeSpentStatistics() {
+        List<Map<String, Object>> data = userActivityService.getTimeSpentStatistics();
+        return AjaxResult.success(data);
     }
 }

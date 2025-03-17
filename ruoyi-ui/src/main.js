@@ -79,16 +79,63 @@ Vue.use(Element, {
 
 Vue.config.productionTip = false
 
-// 添加全局导航守卫，记录用户行为
+// 全局记录用户访问开始时间
+let visitStartTime = new Date().getTime();
+let currentPath = '';
+
+// 添加页面关闭事件监听
+window.addEventListener('beforeunload', function () {
+  // 只有当有有效的路径时才记录
+  if (currentPath) {
+    const now = new Date().getTime();
+    const timeSpent = Math.floor((now - visitStartTime) / 1000);
+
+    // 获取内容类型
+    let contentType = '其他';
+    if (currentPath.includes('/blog/')) {
+      contentType = '文章';
+    } else if (currentPath.includes('/forum/')) {
+      contentType = '论坛帖子';
+    } else if (currentPath.includes('/cms/statistics/')) {
+      contentType = '用户统计';
+    } else if (currentPath.includes('/system/')) {
+      contentType = '系统管理';
+    } else if (currentPath.includes('/monitor/')) {
+      contentType = '系统监控';
+    }
+
+    // 构建数据
+    const activityData = {
+      path: currentPath,
+      timeSpent: timeSpent,
+      contentType: contentType,
+      device: navigator.userAgent,
+      browser: getBrowserInfo(),
+      timestamp: new Date()
+    };
+
+    // 使用同步请求确保数据发送
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/cms/userActivity/track', false); // 同步请求
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + Cookies.get('Admin-Token')); // 添加认证
+    xhr.send(JSON.stringify(activityData));
+  }
+});
+
+// 修改现有的路由守卫代码
 router.afterEach((to, from) => {
   // 排除一些不需要记录的页面，如登录、错误页面等
   const excludePaths = ['/login', '/auth-redirect', '/404', '/401'];
   if (!excludePaths.includes(to.path)) {
+    // 更新当前路径
+    currentPath = to.path;
+
     // 创建记录用户行为的函数
     const recordUserActivity = () => {
-      // 获取停留时间
+      // 获取停留时间（不设置最大值限制）
       const now = new Date().getTime();
-      const timeSpent = from.name ? Math.floor((now - router.app.$options.visitStartTime) / 1000) : 0;
+      const timeSpent = from.name ? Math.floor((now - visitStartTime) / 1000) : 0;
 
       // 获取内容类型
       let contentType = '其他';
@@ -107,7 +154,7 @@ router.afterEach((to, from) => {
       // 构建数据
       const activityData = {
         path: to.path,
-        timeSpent: timeSpent > 0 ? timeSpent : 0,
+        timeSpent: timeSpent,
         contentType: contentType,
         device: navigator.userAgent,
         browser: getBrowserInfo(),
@@ -126,8 +173,8 @@ router.afterEach((to, from) => {
       });
     };
 
-    // 记录当前时间作为新页面访问的开始时间
-    router.app.$options.visitStartTime = new Date().getTime();
+    // 重置访问开始时间为当前时间
+    visitStartTime = new Date().getTime();
 
     // 如果不是首次访问，记录上一页面的访问情况
     if (from.name) {

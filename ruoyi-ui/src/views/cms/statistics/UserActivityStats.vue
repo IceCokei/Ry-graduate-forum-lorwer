@@ -8,29 +8,35 @@
             <!-- 顶部卡片 -->
             <el-row :gutter="20">
                 <el-col :span="8">
-                    <div class="stat-card">
-                        <div class="card-title">总访问量</div>
-                        <div class="card-body">
-                            <span class="card-value">{{ totalVisits }}</span>
-                            <i class="el-icon-view card-icon"></i>
+                    <div class="card-panel">
+                        <div class="card-panel-icon">
+                            <svg-icon icon-class="eye" class-name="card-panel-icon-eye" />
+                        </div>
+                        <div class="card-panel-description">
+                            <div class="card-panel-text">总访问量</div>
+                            <div class="card-panel-num">{{ totalVisits }}</div>
                         </div>
                     </div>
                 </el-col>
                 <el-col :span="8">
-                    <div class="stat-card">
-                        <div class="card-title">活跃用户</div>
-                        <div class="card-body">
-                            <span class="card-value">{{ activeUsers }}</span>
-                            <i class="el-icon-user card-icon"></i>
+                    <div class="card-panel">
+                        <div class="card-panel-icon">
+                            <svg-icon icon-class="peoples" class-name="card-panel-icon-people" />
+                        </div>
+                        <div class="card-panel-description">
+                            <div class="card-panel-text">活跃用户</div>
+                            <div class="card-panel-num">{{ activeUsers }}</div>
                         </div>
                     </div>
                 </el-col>
                 <el-col :span="8">
-                    <div class="stat-card">
-                        <div class="card-title">平均停留时间</div>
-                        <div class="card-body">
-                            <span class="card-value">{{ avgTimeSpent }}s</span>
-                            <i class="el-icon-time card-icon"></i>
+                    <div class="card-panel">
+                        <div class="card-panel-icon">
+                            <svg-icon icon-class="clock" class-name="card-panel-icon-time" />
+                        </div>
+                        <div class="card-panel-description">
+                            <div class="card-panel-text">平均停留时间</div>
+                            <div class="card-panel-num">{{ formattedAvgTime }}</div>
                         </div>
                     </div>
                 </el-col>
@@ -93,6 +99,7 @@
 <script>
 import * as echarts from 'echarts'
 import request from '@/utils/request'
+import { getUserActivityStatistics, getTimeSpentStatistics, getPopularKeywords, getContentTypeStatistics } from '@/api/cms/userActivity'
 
 export default {
     name: "UserActivityStats",
@@ -116,6 +123,10 @@ export default {
         this.fetchData()
     },
     mounted() {
+        this.fetchPageViewsData()
+        this.fetchTimeSpentData()
+        this.fetchPopularKeywords()
+        this.fetchContentTypeData()
         this.$nextTick(() => {
             this.initCharts()
         })
@@ -135,61 +146,78 @@ export default {
             this.fetchContentTypeData()
 
             // 获取关键词统计
-            request.get('/cms/userActivity/popular-keywords').then(response => {
-                console.log('关键词数据:', response.data)
-                this.keywordsData = response.data || []
-
-                // 计算总访问量
-                this.calculateTotals()
-            }).catch(error => {
-                console.error('获取关键词统计失败', error)
-            })
+            this.fetchPopularKeywords()
 
             // 获取停留时间统计
-            request.get('/cms/userActivity/average-time').then(response => {
-                console.log('停留时间数据:', response.data)
-                this.timeSpentData = response.data || []
-                this.updateTimeSpentChart()
-
-                // 计算平均停留时间
-                if (this.timeSpentData.length > 0) {
-                    const sum = this.timeSpentData.reduce((acc, item) => acc + item.timeSpent, 0)
-                    this.avgTimeSpent = Math.round(sum / this.timeSpentData.length)
-                }
-            }).catch(error => {
-                console.error('获取停留时间统计失败', error)
-            })
+            this.fetchTimeSpentData()
         },
         calculateTotals() {
-            // 计算总访问量和活跃用户数
-            this.totalVisits = this.pageViewsData.reduce((sum, item) => sum + item.visits, 0)
-            // 假设活跃用户数是页面访问数的70%
-            this.activeUsers = Math.round(this.totalVisits * 0.7)
+            if (!this.pageViewsData) return
+
+            // 计算总访问量
+            this.totalVisits = this.pageViewsData.reduce((sum, item) => sum + (item.count || 0), 0)
+
+            // 计算活跃用户数
+            const userSet = new Set()
+            this.pageViewsData.forEach(item => {
+                if (item.users) {
+                    item.users.forEach(user => userSet.add(user))
+                }
+            })
+            this.activeUsers = userSet.size
+
+            // 计算平均停留时间，确保所有时间都被计算，不论多长
+            if (this.timeSpentData && this.timeSpentData.length > 0) {
+                const sum = this.timeSpentData.reduce((acc, item) => acc + item.timeSpent, 0)
+                const totalRecords = this.timeSpentData.reduce((sum, item) => sum + (item.count || 1), 0)
+                this.avgTimeSpent = totalRecords > 0 ? Math.floor(sum / totalRecords) : 0
+            }
         },
         fetchPageViewsData() {
-            request.get('/cms/userActivity/statistics').then(response => {
-                console.log('获取到的页面访问数据:', response.data)
+            this.loading = true
+            getUserActivityStatistics().then(response => {
                 if (response.code === 200) {
-                    const data = response.data
-                    if (data && data.pageViews && data.pageViews.length > 0) {
-                        this.pageViewsData = data.pageViews
+                    // 记录完整响应
+                    console.log('用户活动统计完整响应:', response.data)
+
+                    // 更新数据
+                    this.totalVisits = response.data.totalVisits || 0
+                    this.avgTimeSpent = response.data.avgTimeSpent || 0
+                    this.activeUsers = response.data.activeUsers || 0
+
+                    // 特别注意页面访问数据格式
+                    // 后端API实际返回是pageViewsData，如果不存在，还可能是pageViews
+                    this.pageViewsData = response.data.pageViewsData || response.data.pageViews || []
+
+                    console.log('pageViewsData处理前:', this.pageViewsData)
+
+                    // 数据格式适配：确保结构一致
+                    if (this.pageViewsData && this.pageViewsData.length > 0) {
+                        // 如果返回数据没有page和visits属性，尝试适配其他可能的属性名
+                        if (this.pageViewsData[0].page === undefined && this.pageViewsData[0].path !== undefined) {
+                            this.pageViewsData = this.pageViewsData.map(item => ({
+                                page: item.path,
+                                visits: item.count || item.visits || 0
+                            }))
+                        }
+
+                        console.log('pageViewsData处理后:', this.pageViewsData)
                         this.updatePageViewsChart()
-                        this.calculateTotals()
                     } else {
                         console.warn('页面访问数据为空')
-                        this.$message.warning('没有页面访问数据')
                     }
                 } else {
-                    console.error('请求页面访问数据失败:', response.msg)
+                    console.error('请求用户活动统计失败:', response.msg)
                 }
                 this.loading = false
             }).catch(error => {
-                console.error('获取页面访问统计失败', error)
+                console.error('获取用户活动统计失败', error)
                 this.loading = false
             })
         },
         fetchContentTypeData() {
-            request.get('/cms/userActivity/popular-content-types').then(response => {
+            this.typesLoading = true
+            getContentTypeStatistics().then(response => {
                 console.log('获取到的内容类型数据:', response.data)
                 if (response.code === 200) {
                     const data = response.data
@@ -202,8 +230,41 @@ export default {
                 } else {
                     console.error('请求内容类型统计失败:', response.msg)
                 }
+                this.typesLoading = false
             }).catch(error => {
                 console.error('获取内容类型统计失败', error)
+                this.typesLoading = false
+            })
+        },
+        fetchTimeSpentData() {
+            this.timeLoading = true
+            getTimeSpentStatistics().then(response => {
+                if (response.code === 200) {
+                    console.log('获取到的停留时间数据:', response.data)
+                    this.timeSpentData = response.data || []
+
+                    // 确保时间数据非空后更新图表
+                    if (this.timeSpentData && this.timeSpentData.length > 0) {
+                        this.updateTimeSpentChart()
+                    } else {
+                        console.warn('停留时间数据为空')
+                    }
+                }
+                this.timeLoading = false
+            }).catch(error => {
+                console.error('获取停留时间统计数据失败:', error)
+                this.timeLoading = false
+            })
+        },
+        fetchPopularKeywords() {
+            this.keywordsLoading = true
+            getPopularKeywords().then(response => {
+                if (response.code === 200) {
+                    this.keywordsData = response.data || []
+                }
+                this.keywordsLoading = false
+            }).catch(() => {
+                this.keywordsLoading = false
             })
         },
         initCharts() {
@@ -222,15 +283,24 @@ export default {
         updatePageViewsChart() {
             if (!this.pageViewsChart || !this.pageViewsData) return
 
+            // 记录原始数据用于调试
+            console.log('页面访问数据(原始):', this.pageViewsData)
+
+            // 数据适配：确保使用正确的属性名
+            const chartData = this.pageViewsData.map(item => {
+                return {
+                    name: item.page || '',
+                    value: item.visits || 0
+                }
+            })
+
+            console.log('转换后的图表数据:', chartData)
+
+            // 提取X轴数据和系列数据
+            const xAxisData = chartData.map(item => item.name)
+            const seriesData = chartData.map(item => item.value)
+
             const option = {
-                title: {
-                    text: '页面访问统计',
-                    left: 'center',
-                    textStyle: {
-                        color: '#303133',
-                        fontWeight: 'normal'
-                    }
-                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -245,28 +315,24 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: this.pageViewsData.map(item => item.page || ''),
+                    data: xAxisData,
                     axisLabel: {
                         interval: 0,
-                        rotate: 30
+                        rotate: 30,
+                        textStyle: {
+                            fontSize: 12
+                        }
                     }
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                    data: this.pageViewsData.map(item => {
-                        return {
-                            value: item.visits || 0,
-                            itemStyle: {
-                                color: this.getGradientColor(item.visits)
-                            }
-                        }
-                    }),
+                    name: '访问次数',
                     type: 'bar',
-                    showBackground: true,
-                    backgroundStyle: {
-                        color: 'rgba(220, 220, 220, 0.2)'
+                    data: seriesData,
+                    itemStyle: {
+                        color: '#409EFF'
                     }
                 }]
             }
@@ -276,28 +342,30 @@ export default {
         updateTimeSpentChart() {
             if (!this.timeSpentChart || !this.timeSpentData) return
 
+            // 记录原始数据用于调试
+            console.log('停留时间数据(原始):', this.timeSpentData)
+
+            // 数据适配：确保使用正确的属性名
+            const chartData = this.timeSpentData.map(item => {
+                return {
+                    name: item.path || '',  // 后端返回的是path而不是page
+                    value: item.timeSpent || 0
+                }
+            })
+
+            console.log('转换后的时间图表数据:', chartData)
+
+            // 提取X轴数据和系列数据
+            const xAxisData = chartData.map(item => item.name)
+            const seriesData = chartData.map(item => item.value)
+
             const option = {
-                title: {
-                    text: '用户停留时间',
-                    left: 'center',
-                    textStyle: {
-                        color: '#303133',
-                        fontWeight: 'normal'
-                    }
-                },
                 tooltip: {
                     trigger: 'axis'
                 },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
                 xAxis: {
                     type: 'category',
-                    boundaryGap: false,
-                    data: this.timeSpentData.map(item => item.page),
+                    data: xAxisData,
                     axisLabel: {
                         interval: 0,
                         rotate: 30
@@ -305,33 +373,35 @@ export default {
                 },
                 yAxis: {
                     type: 'value',
-                    axisLabel: {
-                        formatter: '{value} 秒'
-                    }
+                    name: '停留时间(秒)'
                 },
                 series: [{
                     name: '停留时间',
-                    data: this.timeSpentData.map(item => item.timeSpent),
                     type: 'line',
                     smooth: true,
-                    lineStyle: {
-                        color: '#409EFF',
-                        width: 3
-                    },
+                    data: seriesData,
                     areaStyle: {
-                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                            {
-                                offset: 0,
-                                color: 'rgba(64, 158, 255, 0.7)'
-                            },
-                            {
-                                offset: 1,
-                                color: 'rgba(64, 158, 255, 0.1)'
-                            }
-                        ])
+                        opacity: 0.3,
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0, color: '#67C23A'
+                            }, {
+                                offset: 1, color: 'rgba(103, 194, 58, 0.1)'
+                            }]
+                        }
                     },
-                    symbol: 'circle',
-                    symbolSize: 8
+                    lineStyle: {
+                        width: 3,
+                        color: '#67C23A'
+                    },
+                    itemStyle: {
+                        color: '#67C23A'
+                    }
                 }]
             }
 
@@ -441,6 +511,19 @@ export default {
                 return '#67C23A';
             }
         }
+    },
+    computed: {
+        formattedAvgTime() {
+            // 将秒转为分秒格式显示
+            const seconds = this.avgTimeSpent || 0;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+
+            if (minutes > 0) {
+                return `${minutes}m ${remainingSeconds}s`;
+            }
+            return `${seconds}s`;
+        }
     }
 }
 </script>
@@ -451,7 +534,7 @@ export default {
     background-color: #f5f7fa;
 }
 
-.stat-card {
+.card-panel {
     background-color: #fff;
     border-radius: 8px;
     padding: 20px;
@@ -463,32 +546,30 @@ export default {
     transition: all 0.3s;
 }
 
-.stat-card:hover {
+.card-panel:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.card-title {
+.card-panel-icon {
+    float: left;
+    margin-right: 15px;
+}
+
+.card-panel-description {
+    overflow: hidden;
+}
+
+.card-panel-text {
     font-size: 16px;
     color: #909399;
     margin-bottom: 10px;
 }
 
-.card-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-value {
+.card-panel-num {
     font-size: 30px;
     font-weight: bold;
     color: #303133;
-}
-
-.card-icon {
-    font-size: 48px;
-    color: rgba(64, 158, 255, 0.2);
 }
 
 .chart-row {

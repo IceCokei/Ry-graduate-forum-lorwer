@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import com.ruoyi.cms.useractivity.domain.CmsUserActivity;
 import com.ruoyi.cms.useractivity.service.ICmsUserActivityService;
 import com.ruoyi.cms.useractivity.mapper.CmsUserActivityMapper;
+import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.common.utils.IpUtils;
+import com.ruoyi.common.utils.ServletUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * 用户行为统计 服务实现
@@ -60,6 +64,19 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
                 userActivity.setTimestamp(new Date());
             }
 
+            // 确保时间值有效
+            if (userActivity.getTimeSpent() == null) {
+                userActivity.setTimeSpent(0L);
+            }
+
+            // 记录IP地址（如果还没设置）
+            if (userActivity.getIpAddress() == null || userActivity.getIpAddress().isEmpty()) {
+                userActivity.setIpAddress(IpUtils.getIpAddr(ServletUtils.getRequest()));
+            }
+
+            // 设置创建时间
+            userActivity.setCreateTime(DateUtils.getNowDate());
+
             int result = cmsUserActivityMapper.insertCmsUserActivity(userActivity);
             System.out.println("数据库插入结果: " + result);
             return result;
@@ -78,7 +95,7 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
      */
     @Override
     public List<CmsUserActivity> selectUserActivityList(CmsUserActivity activity) {
-        return activityList;
+        return cmsUserActivityMapper.selectCmsUserActivityList(activity);
     }
 
     /**
@@ -97,11 +114,29 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
 
             if (activityList.isEmpty()) {
                 statistics.put("pageViews", new ArrayList<>());
+                statistics.put("totalVisits", 0);
+                statistics.put("avgTimeSpent", 0);
+                statistics.put("activeUsers", 0);
                 System.out.println("活动记录为空，返回空数据");
                 return statistics;
             }
 
-            // 计算页面访问量统计
+            // 计算总访问量
+            int totalVisits = activityList.size();
+
+            // 计算活跃用户数(不同用户ID的数量)
+            long activeUsers = activityList.stream()
+                    .map(CmsUserActivity::getUserId)
+                    .distinct()
+                    .count();
+
+            // 计算平均停留时间
+            long totalTimeSpent = activityList.stream()
+                    .mapToLong(CmsUserActivity::getTimeSpent)
+                    .sum();
+            long avgTimeSpent = activityList.isEmpty() ? 0 : totalTimeSpent / activityList.size();
+
+            // 统计页面访问量
             Map<String, Integer> pageVisits = new HashMap<>();
             for (CmsUserActivity activity : activityList) {
                 String path = activity.getPath();
@@ -131,14 +166,19 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
                 pageViewsData = pageViewsData.subList(0, 5);
             }
 
-            System.out.println("处理后的页面访问数据: " + pageViewsData);
+            // 填充所有统计数据
             statistics.put("pageViews", pageViewsData);
+            statistics.put("totalVisits", totalVisits);
+            statistics.put("avgTimeSpent", avgTimeSpent);
+            statistics.put("activeUsers", activeUsers);
+
+            System.out.println("处理后的页面访问数据: " + pageViewsData);
+            System.out.println("总访问量: " + totalVisits + ", 平均停留时间: " + avgTimeSpent + "秒, 活跃用户: " + activeUsers);
+
             return statistics;
         } catch (Exception e) {
+            System.out.println("获取用户活动统计数据失败: " + e.getMessage());
             e.printStackTrace();
-            System.out.println("统计异常: " + e.getMessage());
-            // 返回空数据
-            statistics.put("pageViews", new ArrayList<>());
             return statistics;
         }
     }
@@ -281,5 +321,80 @@ public class CmsUserActivityServiceImpl implements ICmsUserActivityService {
         }
 
         return timeSpent;
+    }
+
+    /**
+     * 获取内容类型统计
+     */
+    @Override
+    public List<Map<String, Object>> getContentTypeStatistics() {
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        // 查询各类型统计 - 替换this.list()调用
+        List<CmsUserActivity> activities = cmsUserActivityMapper.selectCmsUserActivityList(new CmsUserActivity());
+
+        // 统计各内容类型的访问量
+        Map<String, Integer> typeCountMap = new HashMap<>();
+        for (CmsUserActivity activity : activities) {
+            String contentType = activity.getContentType();
+            if (contentType == null || contentType.trim().isEmpty()) {
+                contentType = "其他";
+            }
+            typeCountMap.put(contentType, typeCountMap.getOrDefault(contentType, 0) + 1);
+        }
+
+        // 转换为前端需要的格式
+        for (Map.Entry<String, Integer> entry : typeCountMap.entrySet()) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("type", entry.getKey());
+            item.put("count", entry.getValue());
+            result.add(item);
+        }
+
+        return result;
+    }
+
+    /**
+     * 获取用户停留时间统计
+     */
+    @Override
+    public List<Map<String, Object>> getTimeSpentStatistics() {
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        // 查询停留时间数据 - 替换this.list()调用
+        List<CmsUserActivity> activities = cmsUserActivityMapper.selectCmsUserActivityList(new CmsUserActivity());
+
+        // 按页面路径分组，计算每个页面的平均停留时间
+        Map<String, List<Long>> pathTimeMap = new HashMap<>();
+        for (CmsUserActivity activity : activities) {
+            String path = activity.getPath();
+            Long timeSpent = activity.getTimeSpent();
+
+            if (timeSpent != null && timeSpent > 0) {
+                if (!pathTimeMap.containsKey(path)) {
+                    pathTimeMap.put(path, new ArrayList<>());
+                }
+                pathTimeMap.get(path).add(timeSpent);
+            }
+        }
+
+        // 转换为前端需要的格式
+        for (Map.Entry<String, List<Long>> entry : pathTimeMap.entrySet()) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("path", entry.getKey());
+
+            List<Long> times = entry.getValue();
+            long totalTime = 0;
+            for (Long time : times) {
+                totalTime += time;
+            }
+            int avgTime = times.size() > 0 ? (int) (totalTime / times.size()) : 0;
+
+            item.put("timeSpent", avgTime);
+            item.put("count", times.size());
+            result.add(item);
+        }
+
+        return result;
     }
 }
