@@ -1,5 +1,9 @@
 <template>
     <div class="app-container">
+        <el-breadcrumb separator="/">
+            <el-breadcrumb-item>首页</el-breadcrumb-item>
+            <el-breadcrumb-item>用户统计</el-breadcrumb-item>
+        </el-breadcrumb>
         <div class="dashboard-container">
             <!-- 顶部卡片 -->
             <el-row :gutter="20">

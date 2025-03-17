@@ -92,12 +92,16 @@ router.afterEach((to, from) => {
 
       // 获取内容类型
       let contentType = '其他';
-      if (to.path.includes('/cms/post')) {
+      if (to.path.includes('/blog/')) {
         contentType = '文章';
-      } else if (to.path.includes('/cms/tag')) {
-        contentType = '标签';
-      } else if (to.path.includes('/cms/index')) {
-        contentType = '首页';
+      } else if (to.path.includes('/forum/')) {
+        contentType = '论坛帖子';
+      } else if (to.path.includes('/cms/statistics/')) {
+        contentType = '用户统计';
+      } else if (to.path.includes('/system/')) {
+        contentType = '系统管理';
+      } else if (to.path.includes('/monitor/')) {
+        contentType = '系统监控';
       }
 
       // 构建数据
