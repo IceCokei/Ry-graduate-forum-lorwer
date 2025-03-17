@@ -115,7 +115,7 @@ export default {
       mobileRules: {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
-          { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的手机号', trigger: 'blur' }
+          { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的11位手机号', trigger: 'blur' }
         ],
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
@@ -216,6 +216,12 @@ export default {
         return;
       }
 
+      // 添加手机号格式验证
+      if (!/^1[3-9]\d{9}$/.test(this.mobileForm.mobile)) {
+        this.$message.error('请输入正确的11位手机号');
+        return;
+      }
+
       this.$message.success('验证码发送功能尚未实现');
     },
 
@@ -223,6 +229,12 @@ export default {
     mobileLogin() {
       this.$refs.mobileLoginForm.validate(valid => {
         if (valid) {
+          // 再次验证手机号格式
+          if (!/^1[3-9]\d{9}$/.test(this.mobileForm.mobile)) {
+            this.$message.error('请输入正确的11位手机号');
+            return;
+          }
+
           this.$message.success('手机号登录功能尚未实现');
           // 暂时注释掉跳转代码，直到实际实现登录功能
           // this.$router.push({ path: "/cms/main/cmsIndex" });
