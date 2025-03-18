@@ -31,18 +31,33 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      const username = userInfo.username.trim()
+      const username = userInfo.username?.trim()
       const password = userInfo.password
       const code = userInfo.code
       const uuid = userInfo.uuid
+      const mobile = userInfo.mobile
+      const mobileLogin = userInfo.mobileLogin
+
       return new Promise((resolve, reject) => {
-        login(username, password, code, uuid).then(res => {
-          setToken(res.token)
-          commit('SET_TOKEN', res.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        // 如果是手机号登录
+        if (mobileLogin) {
+          login({ mobile: mobile.trim(), code: code, mobileLogin: true }).then(res => {
+            setToken(res.token)
+            commit('SET_TOKEN', res.token)
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
+        } else {
+          // 账号密码登录
+          login({ username: username, password: password, code: code, uuid: uuid }).then(res => {
+            setToken(res.token)
+            commit('SET_TOKEN', res.token)
+            resolve()
+          }).catch(error => {
+            reject(error)
+          })
+        }
       })
     },
 

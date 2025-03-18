@@ -57,3 +57,27 @@ export function getCodeImg() {
     timeout: 20000
   })
 }
+
+// 发送短信验证码
+export function sendSmsCode(data) {
+  return request({
+    url: '/sms/code',
+    headers: {
+      isToken: false
+    },
+    method: 'post',
+    data: data
+  })
+}
+
+// 手机号验证码登录
+export function mobileLoginApi(mobile, code) {
+  return request({
+    url: '/mobile/login',
+    method: 'post',
+    data: {
+      mobile,
+      code
+    }
+  })
+}

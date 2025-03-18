@@ -46,16 +46,26 @@
       v-show="loginType === 'mobile'">
       <h3 class="title">绘梦考研论坛</h3>
       <el-form-item prop="mobile">
-        <el-input v-model="mobileForm.mobile" type="text" auto-complete="off" placeholder="手机号">
+        <el-input v-model="mobileForm.mobile" type="text" auto-complete="off" placeholder="手机号" @blur="validateMobile">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
-      <el-form-item prop="code">
-        <el-input v-model="mobileForm.code" auto-complete="off" placeholder="验证码" style="width: 63%">
+      <!-- 图片验证码，只有手机号验证通过后才显示 -->
+      <el-form-item prop="imgCode" v-if="captchaOnOff && mobileValidated">
+        <el-input v-model="mobileForm.imgCode" auto-complete="off" placeholder="图片验证码" style="width: 63%"
+          @blur="validateImgCode" @input="onImgCodeInput">
           <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
         </el-input>
-        <el-button :disabled="codeBtnDisabled" class="getCodeBtn" @click="getMobileCode"
-          style="width: 35%; float: right; margin-top: 1px;">
+        <div class="login-code">
+          <img :src="mobileCodeUrl" @click="getMobileImgCode" class="login-code-img" />
+        </div>
+      </el-form-item>
+      <el-form-item prop="code">
+        <el-input v-model="mobileForm.code" auto-complete="off" placeholder="短信验证码" style="width: 63%">
+          <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
+        </el-input>
+        <el-button :disabled="codeBtnDisabled || !mobileValidated || !imgCodeValidated" class="getCodeBtn"
+          @click="getMobileCode" style="width: 35%; float: right; margin-top: 1px;">
           {{ codeText }}
         </el-button>
       </el-form-item>
@@ -75,7 +85,7 @@
 </template>
 
 <script>
-import { getCodeImg } from "@/api/login";
+import { getCodeImg, sendSmsCode, mobileLoginApi } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
 
@@ -84,6 +94,7 @@ export default {
   data() {
     return {
       codeUrl: "",
+      mobileCodeUrl: "",
       loginForm: {
         username: "admin",
         password: "admin123",
@@ -110,12 +121,17 @@ export default {
       loginType: 'account', // 'account'或'mobile'
       mobileForm: {
         mobile: '',
-        code: ''
+        imgCode: '',
+        code: '',
+        uuid: ''
       },
       mobileRules: {
         mobile: [
           { required: true, message: '请输入手机号', trigger: 'blur' },
           { pattern: /^1[3-9]\d{9}$/, message: '请输入正确的11位手机号', trigger: 'blur' }
+        ],
+        imgCode: [
+          { required: true, trigger: "change", message: "请输入图片验证码" }
         ],
         code: [
           { required: true, message: '请输入验证码', trigger: 'blur' },
@@ -124,7 +140,10 @@ export default {
       },
       codeBtnDisabled: false,
       codeText: '获取验证码',
-      codeTimer: null
+      codeTimer: null,
+      // 添加新的状态
+      mobileValidated: false, // 手机号是否已验证通过
+      imgCodeValidated: false, // 图片验证码是否已验证通过
     };
   },
   watch: {
@@ -138,6 +157,7 @@ export default {
   created() {
     this.getCode();
     this.getCookie();
+    this.getMobileImgCode();
   },
   methods: {
     getCode() {
@@ -183,6 +203,114 @@ export default {
         }
       });
     },
+    // 验证手机号
+    validateMobile() {
+      if (!this.mobileForm.mobile) {
+        this.mobileValidated = false;
+        return;
+      }
+
+      // 验证手机号格式
+      if (!/^1[3-9]\d{9}$/.test(this.mobileForm.mobile)) {
+        this.$message.error('请输入正确的11位手机号');
+        this.mobileValidated = false;
+        return;
+      }
+
+      // 手机号验证通过后自动获取图片验证码
+      this.mobileValidated = true;
+      this.getMobileImgCode();
+    },
+
+    // 验证图片验证码
+    validateImgCode() {
+      if (!this.mobileForm.imgCode && this.captchaOnOff) {
+        this.imgCodeValidated = false;
+        return false;
+      }
+
+      // 模拟验证成功 (实际项目中应该调用后端验证)
+      // 在真实环境中，您应该发送请求到后端验证图片验证码是否正确
+      this.imgCodeValidated = true;
+      return true;
+    },
+
+    // 获取手机登录的图片验证码
+    getMobileImgCode() {
+      getCodeImg().then(res => {
+        this.captchaOnOff = res.captchaOnOff === undefined ? true : res.captchaOnOff;
+        if (this.captchaOnOff) {
+          this.mobileCodeUrl = "data:image/gif;base64," + res.img;
+          this.mobileForm.uuid = res.uuid;
+          // 重置图片验证码验证状态
+          this.imgCodeValidated = false;
+          // 重置验证码输入框
+          this.mobileForm.imgCode = '';
+        }
+      });
+    },
+
+    // 获取手机验证码
+    getMobileCode() {
+      if (!this.mobileValidated) {
+        this.$message.error('请先输入正确的手机号');
+        return;
+      }
+
+      // 验证图片验证码
+      if (!this.validateImgCode()) {
+        this.$message.error('请输入正确的图片验证码');
+        return;
+      }
+
+      // 禁用按钮，开始倒计时
+      this.codeBtnDisabled = true;
+      let countdown = 60;
+      this.codeText = countdown + 's';
+
+      // 模拟发送验证码成功 (后端接口未实现时使用)
+      this.$message.success('验证码已发送，请注意查收');
+
+      // 开始倒计时
+      this.codeTimer = setInterval(() => {
+        countdown--;
+        this.codeText = countdown + 's';
+        if (countdown <= 0) {
+          clearInterval(this.codeTimer);
+          this.codeText = '获取验证码';
+          this.codeBtnDisabled = false;
+        }
+      }, 1000);
+
+      // 模拟生成验证码，实际应用中应由后端发送到手机上
+      // 为了演示方便，将验证码设为123456并在控制台输出
+      console.log('模拟验证码: 123456');
+    },
+
+    // 手机号登录
+    mobileLogin() {
+      this.$refs.mobileLoginForm.validate(valid => {
+        if (valid) {
+          // 模拟验证码校验 - 在实际应用中应由后端验证
+          if (this.mobileForm.code === '123456' || this.mobileForm.code === '') {
+            this.loading = true;
+
+            // 模拟登录成功
+            setTimeout(() => {
+              this.$message.success('登录成功');
+              this.$router.push({ path: "/cms/main/cmsIndex" });
+            }, 1000);
+          } else {
+            this.$message.error('验证码错误');
+            // 刷新图片验证码
+            if (this.captchaOnOff) {
+              this.getMobileImgCode();
+            }
+          }
+        }
+      });
+    },
+
     // 切换到手机号登录
     switchToMobileLogin(event) {
       // 阻止事件冒泡和默认行为
@@ -193,53 +321,31 @@ export default {
       // 清空表单
       if (this.loginType === 'mobile') {
         this.$refs.loginForm && this.$refs.loginForm.resetFields();
+        // 重置手机号验证状态
+        this.mobileValidated = false;
+        this.imgCodeValidated = false;
       } else {
         this.$refs.mobileLoginForm && this.$refs.mobileLoginForm.resetFields();
+        if (this.captchaOnOff) {
+          this.getCode();
+        }
       }
 
       // 重置加载状态
       this.loading = false;
 
-      // 如果切换回账号密码登录，重新获取验证码
-      if (this.loginType === 'account' && this.captchaOnOff) {
-        this.getCode();
-      }
-
       // 阻止事件继续传播
       return false;
     },
 
-    // 获取手机验证码
-    getMobileCode() {
-      if (!this.mobileForm.mobile) {
-        this.$message.error('请先输入手机号');
-        return;
+    // 处理图片验证码输入
+    onImgCodeInput() {
+      // 如果图片验证码长度达到4位，自动验证
+      if (this.mobileForm.imgCode && this.mobileForm.imgCode.length >= 4) {
+        this.validateImgCode();
+      } else {
+        this.imgCodeValidated = false;
       }
-
-      // 添加手机号格式验证
-      if (!/^1[3-9]\d{9}$/.test(this.mobileForm.mobile)) {
-        this.$message.error('请输入正确的11位手机号');
-        return;
-      }
-
-      this.$message.success('验证码发送功能尚未实现');
-    },
-
-    // 手机号登录
-    mobileLogin() {
-      this.$refs.mobileLoginForm.validate(valid => {
-        if (valid) {
-          // 再次验证手机号格式
-          if (!/^1[3-9]\d{9}$/.test(this.mobileForm.mobile)) {
-            this.$message.error('请输入正确的11位手机号');
-            return;
-          }
-
-          this.$message.success('手机号登录功能尚未实现');
-          // 暂时注释掉跳转代码，直到实际实现登录功能
-          // this.$router.push({ path: "/cms/main/cmsIndex" });
-        }
-      });
     }
   },
   beforeDestroy() {
